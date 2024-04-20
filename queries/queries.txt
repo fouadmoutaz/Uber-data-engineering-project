@@ -1,0 +1,24 @@
+-- top 10 pickup locations based on number of trips 
+select f.pickup_location_id , count(f.pickup_location_id) as rides_count
+from uber-project-420811.uber_dataset_fouad.fact_table as f
+join uber-project-420811.uber_dataset_fouad.pickup_location_dim p  
+on f.pickup_location_id = p.pickup_location_id
+group by f.pickup_location_id
+order by rides_count desc limit 10;
+
+-- total number of trips by passenger count
+select c.passenger_count , count(f.VendorID) as passenger_count 
+from uber-project-420811.uber_dataset_fouad.fact_table as f
+join uber-project-420811.uber_dataset_fouad.passenger_count_dim c
+on f.passenger_count_id = c.passenger_count_id
+group by c.passenger_count 
+order by c.passenger_count desc
+
+-- avg fare amount by hour of day
+
+select d.pick_hour , avg(f.fare_amount) as avg_fare_amount
+from uber-project-420811.uber_dataset_fouad.fact_table as f
+join uber-project-420811.uber_dataset_fouad.datetime_dim as d
+on f.datetime_id = d.datetime_id
+group by d.pick_hour
+order by avg_fare_amount desc
