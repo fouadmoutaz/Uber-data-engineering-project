@@ -26,4 +26,4 @@ More info about dataset can be found here:
 
    
 ## Data Model
-![DataModel](uber_data_model.png")
+![DataModel]( uber_data_model.png)
